@@ -1,0 +1,20 @@
+---
+- name: Configurar e executar contêiner web com Nginx
+  hosts: web
+  become: true
+  tasks:
+
+    - name: Executar contêiner Nginx com montagem de volume
+      community.docker.docker_container:
+        name: nginx_container
+        image: nginx
+        state: started
+        ports:
+          - "80:80"  # Mapeia a porta 80 do contêiner para a porta 80 da máquina host
+        volumes:
+          - /home/ubuntu/custom_html:/usr/share/nginx/html  # Mapeia um diretório local no contêiner
+
+    - name: Copiar arquivo index.html personalizado para o diretório local montado
+      copy:
+        src: ./index.html
+        dest: /home/ubuntu/custom_html/index.html

@@ -1,0 +1,35 @@
+---
+- hosts: web
+  become: yes  # Para usar sudo
+  tasks:
+    - name: Atualizar pacotes apt
+      apt:
+        update_cache: yes
+
+    - name: Instalar Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Copiar o arquivo index.html personalizado
+      copy:
+        src: ./index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Copiar o arquivo styles.css personalizado
+      copy:
+        src: ./styles.css
+        dest: /var/www/html/styles.css
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Garantir que o Nginx está rodando
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
