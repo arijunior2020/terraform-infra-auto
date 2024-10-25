@@ -51,3 +51,6 @@ Este projeto utiliza Terraform para provisionar uma instância no Azure e Ansibl
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
 
+## Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
