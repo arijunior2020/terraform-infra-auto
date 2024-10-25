@@ -1,1 +1,3 @@
 .terraform/
+replacements.txt
+bfg.jar
